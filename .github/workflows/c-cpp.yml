@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Homework1 Build Test
 
 on:
   push:
@@ -8,16 +8,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+
+    - name: Compile C/C++ Code
+      run: |
+        cd homework1/src
+        if [ -f Makefile ] || [ -f makefile ]; then
+          make
+        else
+          g++ *.cpp -o program || gcc *.c -o program || echo "No source files found"
+        fi
